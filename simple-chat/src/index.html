@@ -1,39 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
+
     <head lang="en">
         <meta charset="UTF-8">
         <title>Send a message</title>
+        <link href="https://fonts.googleapis.com/css?family=Tangerine:bold,bolditalic|Inconsolata:italic|Droid+Sans" rel="stylesheet">
     </head>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <body>
-        <style>
-            .form {
-                width: 100%;
-                display: inline-block;
-                border: 1px solid rgba(25, 25, 25, 0.32);
-            }
-
-            .message {
-                color: red;
-                /* border: 1px solid; */
-                border-radius: 4px;
-                margin: 4px 0;
-                padding: 4px;
-            }
-
-            input[type=submit] {
-                visibility: collapse;
-            }
-
-            input {
-                border: 0;
-                outline: none;
-                width: calc(100% - 2px);
-            }
-        </style>
         <form class="form" action="/">
             <div class="message"></div>
-            <input class="form-input" name="message-text" placeholder="Введите сообщение" type="text">
+            <label>
+                <input class="form-input" name="message-text" placeholder="Введите сообщение" type="text">
+            </label>
         </form>
+
         <script>
             const form = document.querySelector('form');
             const input = document.querySelector('.form-input');
@@ -48,10 +29,12 @@
             }
 
             function handleKeyPress (event) {
+            <!-- Enter function using-->
                 if (event.keyCode === 13) {
                     form.dispatchEvent(new Event('submit'));
                 }
             }
         </script>
+
     </body>
 </html>
