@@ -1,0 +1,108 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    background-color: #fff;
+    color: #333;
+    font-size: 15px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+/*Input message */
+
+input[type=submit] {
+    visibility: collapse;
+}
+
+input {
+    border: 0;
+    outline: none;
+    width: calc(100% - 2px);
+}
+
+
+/*Info about username in chat message*/
+
+.username {
+    background-color: rgb(98,18,120);
+    color: white;
+    font-size: 35px;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    display: flex;
+}
+
+/*Where message exists*/
+
+.chat {
+    width: 100%;
+    height: 80rem;
+    display: flex;
+    background-color: rgb(255,255,255);
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.line {
+    /*line-height: 0.8;*/
+    /*text-indent: 50px;*/
+    flex-basis: 100%;
+    height: 10px;
+}
+
+/*Form of message*/
+
+.form {
+    width: 100%;
+    display: flex;
+    color: rgb(0, 0, 0);
+    border: 1px solid rgba(25, 25, 25, 0.32);
+    margin-bottom: auto;
+    zoom: 5;
+}
+
+/*Общий класс сообщения*/
+
+.message_class {
+    background-color: rgb(236, 236, 234);
+    margin-top: auto;
+    margin-left: auto;
+    line-height:1.5;
+    width: max-content;
+    position: relative;
+    margin-right: 3rem;
+    padding: 1rem;
+    border-radius: 10px;
+    max-width: 50%;
+    overflow-wrap: anywhere;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*Message information: time and username */
+
+.message_metadata {
+    margin-left: auto;
+    font-size: 35px;
+    color: rgba(19, 1, 1, 0.32);
+}
+
+/*Текст сообщения */
+
+.message_text {
+    margin: 1px;
+    font-size: 50px;
+}
+

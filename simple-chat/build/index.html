@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="">
+
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>Send a message</title>
+        <link href="https://fonts.googleapis.com/css?family=Tangerine:bold,bolditalic|Inconsolata:italic|Droid+Sans"
+              rel="stylesheet">
+    <link href="style.css" rel="stylesheet"></head>
+
+    <body>
+        <link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+        <div style = "background-color:rgb(98,18,120); display: flex; flex-wrap: wrap;">
+            <div>
+                <div class="username"
+                     style="padding-top: 1.5rem;">Дженнифер, была 2 часа назад
+                </div>
+            </div>
+        </div>
+
+        <div class="chat"></div>
+
+        <form class="form" action="/">
+            <div class="message"></div>
+            <label>
+                <input class="form-input"
+                       name="message-text"
+                       placeholder="Введите сообщение"
+                       type="text">
+            </label>
+        </form>
+
+        <script>
+            const form = document.querySelector('form');
+            const input_message = document.querySelector('.form-input');
+            const chat = document.querySelector('.chat');
+            let element = 0
+            let sender = 'Тома Канева'
+
+            function message_constructor(message){
+                // Function to construct message type
+                const message_class =       document.createElement('div');
+                const message_text =        document.createElement('p');
+                const message_metadata =    document.createElement('p');
+                const message_line =       document.createElement('div');
+                message_class.className = "message_class";
+
+                message_text.className = "message_text";
+                message_text.textContent = message.message;
+
+                message_metadata.className = "message_metadata";
+                message_metadata.textContent = message.time + ". " + message.sender;
+
+                message_line.className = 'line'
+
+                message_class.append(message_text);
+                message_class.append(message_metadata);
+                return [message_class, message_line]
+            }
+
+            function get_message (event) {
+                // Function to save into local storage
+                event.preventDefault();
+                const message = {
+                    'message': input_message.value,
+                    'time': new Date().toLocaleString(),
+                    'sender': sender
+                };
+                const message_class = message_constructor(message)
+                chat.append(message_class[0]);
+                chat.append(message_class[1]);
+                localStorage.setItem(element,  JSON.stringify(message));
+                input_message.value = "";
+                element = element + 1
+            }
+
+            // Loading all messages from localStorage
+
+            while(localStorage.getItem(element)){
+                let message = JSON.parse(localStorage.getItem(element))
+                const message_class = message_constructor(message);
+                chat.append(message_class[0]);
+                chat.append(message_class[1]);
+                element = element + 1
+            }
+
+            form.addEventListener('submit', this.handleKeyPress.bind(this));
+            form.addEventListener('keypress', this.handleKeyPress.bind(this));
+
+            function handleKeyPress (event) {
+                if (event.keyCode === 13) {
+                    get_message(event);
+                }
+            }
+        </script>
+
+    <script type="text/javascript" src="bundle.js"></script></body>
+</html>
